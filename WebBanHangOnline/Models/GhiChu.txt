@@ -1,0 +1,44 @@
+﻿Tạo CommonAbstract để lưu trữ các phương thức chung
+
+-Kết nối các bảng : Category - News
+
+
+hashSet = Lưu trữ + truy vấn nhanh hơn
+
+
+Câu lệnh để update Database
+Enable-Migrations
+
+add-migration UpdateData
+
+Ckeditor : dùng để tải ảnh ->config.js là các cấu hình thư mục để tải ảnh.video,...
+			+ Thêm các công cụ ở chi tiết
+ 
+
+data-id="@item.Id" => Lấy id từ data-id
+Cấu hình mk ơt : App-start -> indentify
+
+*> Chưa làm đc phân trang sản phẩm  .... -> tham khảo order index
+	thêm cột số lượng ở trang thanh toán ==> sửa ở Partial-thanhtoan
+	Lượt bán
+	Chưa làm đc nút xóa,update ở Role => xong
+
+***> Sản phẩm : Hôm nay = lượt truy cập
+
+Lỗi: Chuyển đổi hiển thị ở News, Posts -> vid 4  -> Xong
+
+Chưa xử lý button xóa hết của phần product Image -> đã fix
+
+
+Lỗi trang tìm kiếm giá tiền => không đưa về được giá đồng ở categories_custom - mục 7: intPrice -> đã fixx
+ko ăn css ở phần đổ xuống My Account
+Nhập email nhận tbao -> lỗi ở database - ko hợp lệ cột -> chưa fix đc
+
+***>Gửi email
+web.fig -> thay đổi địa chỉ và email gửi đi
+
+
+***>
+Role : Bảng phân quyền
+Link đến mk ứng dụng :https://myaccount.google.com/apppasswords 
+

@@ -1,0 +1,1 @@
+update tb_Product set OriginalPrice = 200000

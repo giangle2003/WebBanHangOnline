@@ -1,0 +1,87 @@
+﻿@model PagedList.PagedList<WebBanHangOnline.Models.EF.Contact>
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "Danh sách liên hệ";
+}
+
+
+@section naviheader{
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/contact" class="nav-link">@ViewBag.Title</a>
+        </li>
+    </ul>
+}
+
+
+
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    @using (Html.BeginForm("index", "Contact", FormMethod.Get, new { }))
+                    {
+                        <div class="input-group input-group-sm">
+                            @Html.TextBox("Searchtext", null, new { @class = "form-control" })
+                            @*<input type="text" name="searchtext" class="form-control">*@
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
+                            </span>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="card-header">
+                <h3 class="card-title">Danh sách liên hệ</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered" style="background-color:white">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Message</th>
+                            <th>Ngày tạo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(Model.ToList().IndexOf(item) + 1)</td> <!-- Sử dụng IndexOf để lấy vị trí và tăng thêm 1 -->
+                                <td>@item.Name</td>
+                                <td>@item.Email</td>
+                                <td>@item.Message</td>
+                                <td>@item.CreatedDate</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-6"></div>
+                    <div class="col-6" style="text-align:right;">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+            </div>
+            <!-- /.card-footer-->
+        </div>
+        <!-- /.card -->
+    </div>
+</section>

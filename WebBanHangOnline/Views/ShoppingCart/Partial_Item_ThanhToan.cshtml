@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebBanHangOnline.Models.ShoppingCartItem>
+@using WebBanHangOnline.Common
+@{
+    decimal phiShip = 25000; // Phí vận chuyển mặc định
+    decimal gioiHanMiễnPhí = 599000; // Giới hạn miễn phí vận chuyển
+    var tongtien = Model.Sum(x => x.TotalPrice); // Calculate total price of all items in cart
+}
+
+@if (Model != null && Model.Any())
+{
+    <h3>GIỎ HÀNG <span style="float:right;position:relative"><small>@Model.Count()</small></span></h3>
+    <div style="border:1px solid #808080;">
+        <table class="table">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@Common.FormatNumber(item.Price, 0)</td>
+                </tr>
+            }
+            <tr>
+                <td>Phí vận chuyển:</td>
+                <td>@Common.FormatNumber(tongtien >= gioiHanMiễnPhí ? 0 : phiShip, 0)</td>
+            </tr>
+            <tr>
+                <td>Số lượng sản phẩm:</td>
+                <td>@Model.Count()</td>
+            </tr>
+            <tr>
+                <td>Tổng tiền</td>
+                <td>@Common.FormatNumber(tongtien + (tongtien >= gioiHanMiễnPhí ? 0 : phiShip), 0)</td>
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+    <p>Không có sản phẩm trong giỏ hàng!!</p>
+}
